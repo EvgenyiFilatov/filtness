@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+  Фитнесс студия ФиЛтнесс. ДР
+{% endblock %}
+{% block content %}
+<h3>Клиенты у которых  день рождения сегодня:</h3>
+<ul>
+    {% if clients %}
+        {% for client in clients %}
+            <li>{{ client.first_name }} {{ client.last_name }}</li>
+        {% endfor %}
+    {% else %}
+        <li>Сегодня не кого поздравлять=( </li>
+    {% endif %}
+</ul>
+<h3>Клиенты у которых  день рождения в этом месяце:</h3>
+<ul>
+    {% if clients_month %}
+        {% for client in clients_month %}
+            <li>{{ client.first_name }} {{ client.last_name }} {{ client.birthday }} </li>
+        {% endfor %}
+    {% else %}
+        <li>В этом месяце не кого поздравлять=(</li>
+    {% endif %}
+</ul>
+{% endblock %}

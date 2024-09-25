@@ -1,0 +1,79 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" 
+  style="background-image: url('{% static 'img/i.webp' %}');
+  background-size: cover; background-position: center;">
+    <div class="container">
+      <div 
+        class="navbar-toggler" 
+        type="button" 
+        data-toggle="collapse" 
+        data-target="#navbarNav" 
+        aria-controls="navbarNav" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </div>
+      <a class="navbar-brand" href="{% url 'homepage:index' %}">
+        <img src="{% static 'img/photo_2024-05-07_12-45-07.jpg' %}" height="50" class="d-inline-block align-top" alt="Логотип фитнес студии">            
+      </a>         
+      <div class="collapse navbar-collapse" id="navbarNav">
+        {% with request.resolver_match.view_name as view_name %}            
+        <ul class="nav nav-pills">
+          <li class="nav-item">              
+            <a
+              class="nav-link {% if view_name == 'homepage:index' %} active {% endif %}" 
+              href="{% url 'homepage:index' %}"
+            >
+              Главная 
+            </a> 
+          </li>
+          {% comment %} <li class="nav-item">
+            <a 
+              class="nav-link {% if view_name == 'classes:class_schedule' %} active {% endif %}" 
+              href="{% url 'classes:class_schedule' %}"
+            >
+              Расписание занятий
+            </a> 
+          </li>
+          <li class="nav-item">
+            <a 
+              class="nav-link {% if view_name == 'trainers:trainers_list' %} active {% endif %}"
+              href="{% url 'trainers:trainers_list' %}"
+            >
+              Наши тренеры
+            </a> 
+          </li>
+          <li class="nav-item">
+            <a 
+              class="nav-link {% if view_name == 'membership:membership_info' %} active {% endif %}"
+              href="{% url 'membership:membership_info' %}"
+            >
+              Условия членства
+            </a> 
+          </li>
+          <li class="nav-item">
+            <a 
+              class="nav-link {% if view_name == 'contacts:contact_info' %} active {% endif %}"
+              href="{% url 'contacts:contact_info' %}"
+            >
+              Контакты
+            </a> 
+          </li>{% endcomment %}
+          <li class="nav-item">
+            <a 
+              class="nav-link {% if view_name == 'about:about' %} active {% endif %}"
+              href="{% url 'about:about' %}"
+            >
+              О нас
+            </a> 
+          </li> 
+        </ul>
+        {% endwith %}
+      </div> 
+    </div>
+  </nav>
+</header>
+
+
