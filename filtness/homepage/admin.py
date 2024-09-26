@@ -4,6 +4,7 @@ from .models import Clients
 
 @admin.register(Clients)
 class ClientsAdmin(admin.ModelAdmin):
+
     list_display = (
         'id',
         'first_name',
@@ -11,8 +12,9 @@ class ClientsAdmin(admin.ModelAdmin):
         'birthday',
         'created_at',
         'referral',
+        'discount_percentage_display',
         'is_visiting'
-        )
+    )
     list_editable = ('is_visiting',)
     list_filter = ('is_visiting',)
     ordering = ('-created_at',)
