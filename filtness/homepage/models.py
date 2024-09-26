@@ -18,4 +18,26 @@ class Clients(models.Model):
         verbose_name_plural = 'Клиенты'
 
     def __str__(self):
-        return self.last_name
+        return f'{self.first_name} {self.last_name}'
+
+
+class Referral(models.Model):
+    client = models.ForeignKey(
+        Clients,
+        on_delete=models.CASCADE,
+        related_name='referrals',
+        verbose_name='Клиент-реферал'
+        )
+    referred_client = models.ForeignKey(
+        Clients,
+        on_delete=models.CASCADE,
+        related_name='referral_of',
+        verbose_name='Реферал')
+
+    class Meta:
+        verbose_name = 'реферал'
+        verbose_name_plural = 'Рефералы'
+
+    def __str__(self):
+        return f'{self.client} - {self.referred_client}'
+
