@@ -12,6 +12,11 @@ class Clients(models.Model):
     birthday = models.DateField(
         'День рождения клиента',
     )
+    number_phone = models.CharField(
+        'Номер телефона',
+        blank=True,
+        max_length=50
+        )
     created_at = models.DateTimeField(
         'Добавлено', auto_now_add=True)
     is_visiting = models.BooleanField(

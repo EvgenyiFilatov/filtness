@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'treners.apps.TrenersConfig',
     'about.apps.AboutConfig',
     'homepage.apps.HomepageConfig',
     'django.contrib.admin',
