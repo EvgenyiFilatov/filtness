@@ -30,6 +30,10 @@ class Clients(models.Model):
         related_name='referred_clients',
         verbose_name='Кто пригласил'
     )
+    deposit = models.IntegerField(
+        'Депозит',
+        default=0
+        )
 
     class Meta:
         verbose_name = 'клиент'

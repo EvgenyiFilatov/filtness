@@ -9,6 +9,18 @@ class Specialty(models.Model):
     Модель, представляющая специализацию тренера.
     """
     name = models.CharField('Название специализации', max_length=100)
+    price_one_time = models.IntegerField(
+        'Стоимость одной тренировки',
+        default=600
+    )
+    price_four_time = models.IntegerField(
+        'Абонемент на 4 занятия',
+        default=2200
+    )
+    price_eight_time = models.IntegerField(
+        'Абонемент на 8 занятий',
+        default=4000
+    )
 
     class Meta:
         verbose_name = 'специализация'
@@ -24,11 +36,6 @@ class Treners(models.Model):
     """
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
-    specialties = models.ManyToManyField(
-        Specialty,
-        verbose_name='Специализации',
-        related_name='trainers'
-    )
     birthday = models.DateField(
         'День рождения тренера',
     )
@@ -74,9 +81,3 @@ class ClientTrainerRelationship(models.Model):
 
     def __str__(self):
         return f'{self.client} - {self.trainer}'
-
-    def clean(self):
-        # Проверка, что специальность доступна у тренера
-        if self.specialty not in self.trainer.specialties.all():
-            raise ValidationError(
-                _('Специальность не доступна у данного тренера.'))

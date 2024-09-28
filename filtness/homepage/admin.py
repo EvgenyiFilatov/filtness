@@ -13,7 +13,8 @@ class ClientsAdmin(admin.ModelAdmin):
         'created_at',
         'referral',
         'discount_percentage_display',
-        'is_visiting'
+        'is_visiting',
+        'deposit'
     )
     list_editable = ('is_visiting',)
     list_filter = ('is_visiting',)

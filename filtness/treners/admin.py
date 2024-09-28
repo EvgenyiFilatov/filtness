@@ -6,7 +6,10 @@ from .models import Treners, Specialty, ClientTrainerRelationship
 class SpecialtyAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'name'
+        'name',
+        'price_one_time',
+        'price_four_time',
+        'price_eight_time'
     )
 
 
@@ -21,7 +24,6 @@ class TrenersAdmin(admin.ModelAdmin):
         'number_phone'
     )
     ordering = ('id',)
-    filter_horizontal = ('specialties',)
 
 
 @admin.register(ClientTrainerRelationship)
