@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+  Фитнесс студия ФиЛтнесс. Запись на тренировку
+{% endblock %}
+{% block content %}
+  <h1 class="pb-2 mb-0">Запись на тренировку</h1>
+  <div class="row">
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Записать на тренировку</button>
+  </form>
+ 
+    {% if training_session %}
+      <div class="alert alert-info mt-3">
+        Вы успешно забронировали тренировку:<br>
+        Тренер: {{ training_session.trener }}<br>
+        Время: {{ training_session.date_time|date:"d-m-Y H:i" }}
+      </div>
+    {% endif %}
+
+  
+{% endblock %}

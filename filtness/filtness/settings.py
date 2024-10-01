@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sign_for_training.apps.SignForTrainingConfig',
     'treners.apps.TrenersConfig',
     'about.apps.AboutConfig',
     'homepage.apps.HomepageConfig',

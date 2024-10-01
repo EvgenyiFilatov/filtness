@@ -29,15 +29,15 @@
               Главная 
             </a> 
           </li>
-          {% comment %} <li class="nav-item">
+          <li class="nav-item">
             <a 
-              class="nav-link {% if view_name == 'classes:class_schedule' %} active {% endif %}" 
-              href="{% url 'classes:class_schedule' %}"
+              class="nav-link {% if view_name == 'sign_for_training:sign' %} active {% endif %}" 
+              href="{% url 'sign_for_training:sign' %}"
             >
-              Расписание занятий
+              Записаться
             </a> 
           </li>
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a 
               class="nav-link {% if view_name == 'trainers:trainers_list' %} active {% endif %}"
               href="{% url 'trainers:trainers_list' %}"
