@@ -15,6 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'user.MyUser'
 
 # Application definition
 
@@ -22,6 +23,7 @@ INSTALLED_APPS = [
     'sign_for_training.apps.SignForTrainingConfig',
     'treners.apps.TrenersConfig',
     'about.apps.AboutConfig',
+    'user.apps.UserConfig',
     'homepage.apps.HomepageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -113,7 +115,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    ]
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
