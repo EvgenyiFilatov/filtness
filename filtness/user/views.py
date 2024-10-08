@@ -10,6 +10,6 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('homepage:index')
 
     def form_valid(self, form):
-        user = form.save()  # Сохраняем пользователя
-        login(self.request, user)  # Выполняем автоматический вход
+        user = form.save()
+        login(self.request, user)
         return super().form_valid(form)
