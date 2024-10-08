@@ -37,6 +37,9 @@
               Записаться
             </a> 
           </li>
+          <li class="nav-item">
+            <a class="nav-link{% if view_name == 'user:register' %} active {% endif %}" href="{% url 'user:register' %}">Регистрация</a>
+          </li>
           {% comment %} <li class="nav-item">
             <a 
               class="nav-link {% if view_name == 'trainers:trainers_list' %} active {% endif %}"
