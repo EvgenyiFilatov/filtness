@@ -1,16 +1,23 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
+
 {% block title %}
   Фитнесс студия ФиЛтнесс. Запись на тренировку
 {% endblock %}
 {% block content %}
-  <h1 class="pb-2 mb-0">Запись на тренировку</h1>
-  <div class="row">
+  <div class="card col-4">
+    <div class="card-header">
+      Запись на тренировку
+    </div>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type="submit" content="Записатьcz на тренировку" %}
+
+      </form>
+    </div>
   </div>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Записать на тренировку</button>
-  </form>
  
     {% if training_session %}
       <div class="alert alert-info mt-3">

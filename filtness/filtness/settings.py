@@ -20,6 +20,7 @@ AUTH_USER_MODEL = 'user.MyUser'
 # Application definition
 
 INSTALLED_APPS = [
+    "django_bootstrap5",
     'sign_for_training.apps.SignForTrainingConfig',
     'treners.apps.TrenersConfig',
     'about.apps.AboutConfig',
