@@ -9,7 +9,13 @@
         {% for client in clients %}
             <li>{{ client.first_name }} {{ client.last_name }}</li>
         {% endfor %}
-    {% else %}
+        {% endif %}
+    {% if users %}
+        {% for user in users %}
+            <li>{{ user.first_name }} {{ user.last_name }}</li>
+        {% endfor %}
+        {% endif %}
+    {% if not users and not clients%}
         <li>Сегодня не кого поздравлять=( </li>
     {% endif %}
 </ul>

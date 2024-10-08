@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Clients
+from user.models import MyUser
 
 
 def index(request):
@@ -19,8 +20,14 @@ def birthday_today(request):
         birthday__month=today.month,
     )
 
+    users_with_birthday = MyUser.objects.filter(
+            birthday__month=today.month,
+            birthday__day=today.day
+        )
+
     return render(
         request, 'homepage/birthday_today.html',
-        {'clients': clients_with_birthday,
+        {'users': users_with_birthday,
+         'clients': clients_with_birthday,
          'clients_month': clients_with_birthday_in_month}
     )
