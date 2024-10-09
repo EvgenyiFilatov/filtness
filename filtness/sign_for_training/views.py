@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from .forms import TrainingSessionForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+from .forms import TrainingSessionForm
 
 
+@login_required
 def sign(request):
     training_session = None
 
@@ -17,3 +20,4 @@ def sign(request):
 
     return render(request, 'sign_for_training/sign.html',
                   {'form': form, 'training_session': training_session})
+

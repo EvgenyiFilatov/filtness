@@ -48,6 +48,10 @@ ROOT_URLCONF = 'filtness.urls'
 
 TEMPLATES_DIR = BASE_DIR / 'templates'
 
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'homepage:index'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -38,33 +38,6 @@
             </a> 
           </li>
           <li class="nav-item">
-            <a class="nav-link{% if view_name == 'user:register' %} active {% endif %}" href="{% url 'user:register' %}">Регистрация</a>
-          </li>
-          {% comment %} <li class="nav-item">
-            <a 
-              class="nav-link {% if view_name == 'trainers:trainers_list' %} active {% endif %}"
-              href="{% url 'trainers:trainers_list' %}"
-            >
-              Наши тренеры
-            </a> 
-          </li>
-          <li class="nav-item">
-            <a 
-              class="nav-link {% if view_name == 'membership:membership_info' %} active {% endif %}"
-              href="{% url 'membership:membership_info' %}"
-            >
-              Условия членства
-            </a> 
-          </li>
-          <li class="nav-item">
-            <a 
-              class="nav-link {% if view_name == 'contacts:contact_info' %} active {% endif %}"
-              href="{% url 'contacts:contact_info' %}"
-            >
-              Контакты
-            </a> 
-          </li>{% endcomment %}
-          <li class="nav-item">
             <a 
               class="nav-link {% if view_name == 'about:about' %} active {% endif %}"
               href="{% url 'about:about' %}"
@@ -72,6 +45,25 @@
               О нас
             </a> 
           </li> 
+          {% if user.is_authenticated %}
+            <span class="navbar-text">Пользователь: <b>{{ user.username }}</b></span>
+            <!-- Новая кнопка -->
+            <li class="nav-item">
+              <a class="nav-link{% if view_name == 'password_change' %} active {% endif %}"
+                href="{% url 'password_change' %}">Изменить пароль</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link{% if view_name == 'login' %} active {% endif %}" href="{% url 'login' %}">Войти</a>
+            </li>
+            <!-- Новая кнопка -->
+            <li class="nav-item">
+              <a class="nav-link{% if view_name == 'user:register' %} active {% endif %}" href="{% url 'user:register' %}">Регистрация</a>
+            </li>
+          {% endif %}
         </ul>
         {% endwith %}
       </div> 
