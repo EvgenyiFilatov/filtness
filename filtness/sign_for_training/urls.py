@@ -5,5 +5,5 @@ from . import views
 app_name = 'sign_for_training'
 
 urlpatterns = [
-    path('', views.sign, name='sign'),
+    path('', views.SignCreateView.as_view(), name='sign'),
 ]
