@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView
 from django.contrib.auth import login
@@ -12,7 +13,7 @@ from sign_for_training.models import TrainingSessions
 
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
-    template_name = 'user/register.html'
+    template_name = 'registration/registration_form.html'
     success_url = reverse_lazy('homepage:index')
 
     def form_valid(self, form):
@@ -31,12 +32,15 @@ class ProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = self.object
-        sign_list = TrainingSessions.objects.filter(
-            author=profile
-            ).select_related(
-            'author',
-        ).order_by('-date_time',)
-        
+        if self.request.user.is_staff:
+            sign_list = TrainingSessions.objects.all().select_related(
+                'author'
+            ).order_by('-date_time')
+        else:
+            sign_list = TrainingSessions.objects.filter(
+                author=profile
+            ).select_related('author')
+
         context['sign_list'] = sign_list
         return context
 

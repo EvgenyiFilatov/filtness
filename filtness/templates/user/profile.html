@@ -18,14 +18,25 @@
     </ul> 
   </small>
   <br>
-  <h3 class="mb-5 text-center">Записи пользователя</h3>
+  {% if profile.is_staff %}
+    <h3 class="mb-5 text-center">Записи пользователей</h3>
+  {% else %}
+    <h3 class="mb-5 text-center">Записи пользователя</h3>
+  {% endif %}
   {% for sign in sign_list %}
-    <article class="mb-5">
-      <h5 class="card-title">{{ sign.trener }}</h5>
-      <h5 class="card-title">{{ sign.date_time }}</h5>
-
-      {% comment %} {% include "includes/post_card.html" %} {% endcomment %}
-    </article>
+    {% if profile.is_staff %}
+      <article class="mb-5">
+        <h5 class="card-title">К тренеру: {{ sign.trener }}</h5>
+        <h5 class="card-title">Дата и время тренировки: {{ sign.date_time }}</h5>
+        <h5 class="card-title">Клиент: {{ sign.author.first_name }} {{ sign.author.last_name }}</h5>
+        -----------------------------------------------------------
+    {% else %}
+        <h5 class="card-title">К тренеру: {{ sign.trener }}</h5>
+        <h5 class="card-title">Дата и время тренировки: {{ sign.date_time }}</h5>
+      -----------------------------------------------------------
+        {% comment %} {% include "includes/post_card.html" %} {% endcomment %}
+      </article>
+      {% endif %}
   {% endfor %}
   {% comment %} {% include "includes/paginator.html" %} {% endcomment %}
 {% endblock %}
