@@ -1,29 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (
-    CreateView, DeleteView, UpdateView, ListView, DetailView
-)
+from django.views.generic import CreateView, DeleteView, UpdateView
 from .forms import TrainingSessionForm
-
-
-@login_required
-def sign(request):
-    training_session = None
-
-    if request.method == 'POST':
-        form = TrainingSessionForm(request.POST)
-        if form.is_valid():
-            training_session = form.save()
-            training_session.save()
-            messages.success(request, 'Запись на тренировку успешно создана!')
-    else:
-        form = TrainingSessionForm()
-
-    return render(request, 'sign_for_training/sign.html',
-                  {'form': form, 'training_session': training_session})
+from .models import TrainingSessions
 
 
 class SignCreateView(LoginRequiredMixin, CreateView):
@@ -37,3 +17,28 @@ class SignCreateView(LoginRequiredMixin, CreateView):
         return redirect(
             reverse('user:profile', args=[self.request.user.username])
         )
+
+
+class SignEditView(LoginRequiredMixin, UpdateView):
+    model = TrainingSessions
+    form_class = TrainingSessionForm
+    template_name = 'sign_for_training/edit_sign.html'
+
+    def get_object(self):
+        sign_id = self.kwargs.get('sign_id')
+        return get_object_or_404(TrainingSessions, id=sign_id)
+
+    def get_success_url(self):
+        return reverse_lazy('user:profile', args=[self.request.user.username])
+
+
+class SignDeleteView(LoginRequiredMixin, DeleteView):
+    model = TrainingSessions
+    template_name = 'sign_for_training/edit_sign.html'
+
+    def get_object(self):
+        sign_id = self.kwargs.get('sign_id')
+        return get_object_or_404(TrainingSessions, id=sign_id)
+
+    def get_success_url(self):
+        return reverse_lazy('user:profile', args=[self.request.user.username])

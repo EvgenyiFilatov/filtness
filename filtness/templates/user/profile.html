@@ -29,12 +29,15 @@
         <h5 class="card-title">К тренеру: {{ sign.trener }}</h5>
         <h5 class="card-title">Дата и время тренировки: {{ sign.date_time }}</h5>
         <h5 class="card-title">Клиент: {{ sign.author.first_name }} {{ sign.author.last_name }}</h5>
-        -----------------------------------------------------------
     {% else %}
         <h5 class="card-title">К тренеру: {{ sign.trener }}</h5>
         <h5 class="card-title">Дата и время тренировки: {{ sign.date_time }}</h5>
-      -----------------------------------------------------------
-        {% comment %} {% include "includes/post_card.html" %} {% endcomment %}
+        <a class="btn btn-sm text-muted" href="{% url 'sign_for_training:edit' sign.id %}" role="button">
+          Отредактировать запись
+        </a> 
+        <a class="btn btn-sm text-muted" href="{% url 'sign_for_training:delete' sign.id %}" role="button">
+          Удалить запись
+        </a>
       </article>
       {% endif %}
   {% endfor %}
